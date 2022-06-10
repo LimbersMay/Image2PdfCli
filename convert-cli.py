@@ -11,10 +11,6 @@ class CpException(Exception):
 
 
 def convert_image_to_pdf(src: Path, dest: Path, single=False, group=False, one=False, name='merged'):
-    
-    print('source ->', src.absolute())
-    print('Destination', dest.absolute())
-    print(name)
 
     # We define the object to convert the Png images into Jpg images
     convert_png_to_jpg = PngToJpg(str(src.absolute()), str(dest.absolute()))

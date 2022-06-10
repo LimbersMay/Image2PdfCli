@@ -75,16 +75,13 @@ class ImgToPdf:
     def conversion_unico(self):
         nombre_fichero = Path(self.ruta_origen).name
 
-        nombre_pdf = nombre_fichero[:-3] + ".pdf" if nombre_fichero.endswith(".jpg") else nombre_fichero[:-5] + ".pdf"
+        nombre_pdf = nombre_fichero[:-3] + "pdf" if nombre_fichero.endswith(".jpg") else nombre_fichero[:-5] + "pdf"
 
         # Eliminamos el nombre del fichero del Path
         self.ruta_origen = os.path.dirname(self.ruta_origen)
 
         self.ruta_origen += "/"
         self.ruta_destino += "/"
-
-        print("RUTA ORIGEN: ", self.ruta_origen + nombre_fichero)
-        print("RUTA DESTINO: ", self.ruta_destino + nombre_pdf)
 
         with open(self.ruta_destino + nombre_pdf, "wb") as fichero:
             fichero.write(img2pdf.convert(self.ruta_origen + nombre_fichero))
