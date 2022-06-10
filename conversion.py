@@ -48,7 +48,7 @@ class PngToJpg:
         os.remove(self.ruta_origen)
 
 class ImgToPdf:
-    def __init__(self, ruta_origen: str, ruta_destino: str, nombre: str = "unido.pdf") -> None:
+    def __init__(self, ruta_origen: str, ruta_destino: str, nombre: str = "merged.pdf") -> None:
         self.ruta_origen = ruta_origen
         self.ruta_destino = ruta_destino
 
