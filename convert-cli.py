@@ -45,8 +45,15 @@ def cli() -> argparse.Namespace:
     parser.add_argument(
         '-g',
         '--group',
-        action='store-true',
+        action='store_true',
         help='Convert a group image files into pdf'
+    )
+
+    parser.add_argument(
+        '-o',
+        '--one',
+        action='store_true',
+        help='Merge all the pdf files into one file'
     )
 
     return parser.parse_args()
