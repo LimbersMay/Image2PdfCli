@@ -9,13 +9,10 @@ class CpException(Exception):
     pass
 
 
-def convert_image_to_pdf(src: Path, dest: Path):
+def convert_image_to_pdf(src: Path, dest: Path, single=False, group=False, one=False):
     print('source ->', src.absolute())
     print('Destination', dest.absolute())
-
-    if not src.is_file():
-        raise CpException('Type file not supported')
-
+        
 
 def cli() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
@@ -38,6 +35,7 @@ def cli() -> argparse.Namespace:
     parser.add_argument(
         '-s',
         '--single',
+        default=True,
         action='store_true',
         help='Convert only one file into PDF'
     )
@@ -62,7 +60,7 @@ def cli() -> argparse.Namespace:
 def main():
     args = cli()
     try:
-        convert_image_to_pdf(args.source, args.destination)
+        convert_image_to_pdf(args.source, args.destination, args.single, args.group, args.one)
     
     except CpException as e:
         print(e, file=stderr)
