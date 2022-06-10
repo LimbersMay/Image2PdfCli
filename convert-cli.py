@@ -10,9 +10,11 @@ class CpException(Exception):
     pass
 
 
-def convert_image_to_pdf(src: Path, dest: Path, single=False, group=False, one=False):
+def convert_image_to_pdf(src: Path, dest: Path, single=False, group=False, one=False, name='merged.pdf'):
+    
     print('source ->', src.absolute())
     print('Destination', dest.absolute())
+    print(name)
 
     # We define the object to convert the Png images into Jpg images
     convert_png_to_jpg = PngToJpg(str(src.absolute()), str(dest.absolute()))
@@ -30,7 +32,7 @@ def convert_image_to_pdf(src: Path, dest: Path, single=False, group=False, one=F
     elif group and one:
         # Convert the images to onefile PDF
         convert_png_to_jpg.realizar_conversion()
-        convert_pdf.convertir_unido()
+        convert_pdf.convertir_unido(name)
     
     elif group and not one:
         # Convert the images in separe files
@@ -54,6 +56,12 @@ def cli() -> argparse.Namespace:
         'destination',
         type=Path,
         help='Destination directory where the image file will be converted into PDF'
+    )
+
+    parser.add_argument(
+        '-n', '--name',
+        type=str,
+        help='Name of the merged file PDF'
     )
 
     parser.add_argument(
