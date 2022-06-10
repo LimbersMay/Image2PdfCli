@@ -15,7 +15,7 @@ def convert_image_to_pdf(src: Path, dest: Path, single=False, group=False, one=F
     print('Destination', dest.absolute())
 
     # We define the object to convert the Png images into Jpg images
-    convert_png = PngToJpg(str(src.absolute()), str(dest.absolute()))
+    convert_png_to_jpg = PngToJpg(str(src.absolute()), str(dest.absolute()))
 
     # Object to convert Jpg files to PDF files
     convert_pdf = ImgToPdf(str(src.absolute()), str(dest.absolute()))
@@ -24,17 +24,17 @@ def convert_image_to_pdf(src: Path, dest: Path, single=False, group=False, one=F
     
 
     if single and not group: 
-        convert_png.realizar_conversion_unica()
+        convert_png_to_jpg.realizar_conversion_unica()
         convert_pdf.conversion_unico()    
 
     elif group and one:
         # Convert the images to onefile PDF
-        convert_png.realizar_conversion()
+        convert_png_to_jpg.realizar_conversion()
         convert_pdf.convertir_unido()
     
     elif group and not one:
         # Convert the images in separe files
-        convert_png.realizar_conversion()
+        convert_png_to_jpg.realizar_conversion()
         convert_pdf.convertir_separado()
     
 
