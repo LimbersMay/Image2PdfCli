@@ -61,6 +61,7 @@ def cli() -> argparse.Namespace:
     parser.add_argument(
         '-n', '--name',
         type=str,
+        default='merge',
         help='Name of the merged file PDF'
     )
 
