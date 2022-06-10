@@ -78,8 +78,10 @@ class ImgToPdf:
         with open(self.ruta_destino + nombre_pdf, "wb") as fichero:
             fichero.write(img2pdf.convert(self.ruta_origen + nombre_fichero))
 
-    def convertir_unido(self):
+    def convertir_unido(self, nombre):
         self.obtener_informacion()
+
+        self.nombre = nombre + '.pdf'
 
         # rutas_ordenadas = ordenar_lista(self.listado_origen)
         listado_rutas = [self.ruta_origen + archivo for archivo in self.listado_origen]
