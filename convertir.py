@@ -42,7 +42,12 @@ def cli() -> argparse.Namespace:
         help='Convert only one file into PDF'
     )
 
-
+    parser.add_argument(
+        '-g',
+        '--group',
+        action='store-true',
+        help='Convert a group image files into pdf'
+    )
 
     return parser.parse_args()
 
