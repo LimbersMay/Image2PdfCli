@@ -6,12 +6,15 @@ from pathlib import Path
 
 class PngToJpg:
     def __init__(self, ruta_origen: str, ruta_destino: str, extension: str = "jpg") -> None:
-        self.ruta_origen = ruta_origen + "/"
-        self.ruta_destino = ruta_destino + "/"
+        self.ruta_origen = ruta_origen
+        self.ruta_destino = ruta_destino
 
         self.extension = extension
 
     def realizar_conversion(self):
+
+        self.ruta_origen += "/"
+        self.ruta_destino += "/"
 
         listado_pngs = [archivo for archivo in os.listdir(self.ruta_origen) if archivo.endswith(".png")]
         convertir_jpg = [archivo[:-3] + self.extension for archivo in listado_pngs]
@@ -46,8 +49,8 @@ class PngToJpg:
 
 class ImgToPdf:
     def __init__(self, ruta_origen: str, ruta_destino: str, nombre: str = "unido.pdf") -> None:
-        self.ruta_origen = ruta_origen + "/"
-        self.ruta_destino = ruta_destino + "/"
+        self.ruta_origen = ruta_origen
+        self.ruta_destino = ruta_destino
 
         self.nombre = nombre
 
@@ -62,6 +65,9 @@ class ImgToPdf:
     def convertir_separado(self):
         self.obtener_informacion()
 
+        self.ruta_origen += "/"
+        self.ruta_destino += "/"
+
         for contador in range(len(self.listado_origen)):
             with open(self.ruta_destino + self.nombres_pdf[contador], "wb") as fichero:
                 fichero.write(img2pdf.convert(self.ruta_origen + self.listado_origen[contador]))
@@ -73,13 +79,21 @@ class ImgToPdf:
 
         # Eliminamos el nombre del fichero del Path
         self.ruta_origen = os.path.dirname(self.ruta_origen)
-        self.ruta_destino = self.ruta_destino
+
+        self.ruta_origen += "/"
+        self.ruta_destino += "/"
+
+        print("RUTA ORIGEN: ", self.ruta_origen + nombre_fichero)
+        print("RUTA DESTINO: ", self.ruta_destino + nombre_pdf)
 
         with open(self.ruta_destino + nombre_pdf, "wb") as fichero:
             fichero.write(img2pdf.convert(self.ruta_origen + nombre_fichero))
 
     def convertir_unido(self):
         self.obtener_informacion()
+
+        self.ruta_origen += "/"
+        self.ruta_destino += "/"
 
         # rutas_ordenadas = ordenar_lista(self.listado_origen)
         listado_rutas = [self.ruta_origen + archivo for archivo in self.listado_origen]
