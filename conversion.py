@@ -2,8 +2,6 @@ import os
 import img2pdf
 from io import open
 from PIL import Image
-from ordenar import ordenar_lista
-
 
 class PngToJpg:
     def __init__(self, ruta_origen: str, ruta_destino: str, extension: str = "jpg") -> None:
