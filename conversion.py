@@ -6,12 +6,13 @@ from pathlib import Path
 
 class PngToJpg:
     def __init__(self, ruta_origen: str, ruta_destino: str, extension: str = "jpg") -> None:
-        self.ruta_origen = ruta_origen
-        self.ruta_destino = ruta_destino
+        self.ruta_origen = ruta_origen + "/"
+        self.ruta_destino = ruta_destino + "/"
 
         self.extension = extension
 
     def realizar_conversion(self):
+
         listado_pngs = [archivo for archivo in os.listdir(self.ruta_origen) if archivo.endswith(".png")]
         convertir_jpg = [archivo[:-3] + self.extension for archivo in listado_pngs]
 
@@ -37,7 +38,7 @@ class PngToJpg:
             img = img.convert("RGB")
 
         # Ruta final en donde se cambiará la extensión de Png a Jpg
-        self.ruta_origen = os.path.dirname(self.ruta_origen) + "/" + convertir_jpg
+        self.ruta_origen = os.path.dirname(self.ruta_origen) + convertir_jpg
 
         # Guardamos la imagen en Jpg en la ruta de origen y eliminamos la original en png
         img.save(self.ruta_origen)
@@ -45,8 +46,8 @@ class PngToJpg:
 
 class ImgToPdf:
     def __init__(self, ruta_origen: str, ruta_destino: str, nombre: str = "unido.pdf") -> None:
-        self.ruta_origen = ruta_origen
-        self.ruta_destino = ruta_destino
+        self.ruta_origen = ruta_origen + "/"
+        self.ruta_destino = ruta_destino + "/"
 
         self.nombre = nombre
 
@@ -71,8 +72,8 @@ class ImgToPdf:
         nombre_pdf = nombre_fichero[:-3] + ".pdf" if nombre_fichero.endswith(".jpg") else nombre_fichero[:-5] + ".pdf"
 
         # Eliminamos el nombre del fichero del Path
-        self.ruta_origen = os.path.dirname(self.ruta_origen) + "/"
-        self.ruta_destino = self.ruta_destino + "/"
+        self.ruta_origen = os.path.dirname(self.ruta_origen)
+        self.ruta_destino = self.ruta_destino
 
         with open(self.ruta_destino + nombre_pdf, "wb") as fichero:
             fichero.write(img2pdf.convert(self.ruta_origen + nombre_fichero))
