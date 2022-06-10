@@ -3,6 +3,7 @@
 import argparse
 from pathlib import Path
 from sys import stderr
+from conversion import *
 
 
 class CpException(Exception):
@@ -12,7 +13,24 @@ class CpException(Exception):
 def convert_image_to_pdf(src: Path, dest: Path, single=False, group=False, one=False):
     print('source ->', src.absolute())
     print('Destination', dest.absolute())
-        
+
+    # We define the object to convert the Png images into Jpg images
+    convert_png = PngToJpg(src, dest)
+
+    # Object to convert Jpg files to PDF files
+    convert_pdf = ImgToPdf(src, dest)
+
+    # Convert png files to jpg files
+    convert_png.realizar_conversion()
+
+    if group and one:
+        # Convert the images to onefile PDF
+        convert_pdf.convertir_unido()
+    
+    elif group and not one:
+        # Convert the images in separe files
+        convert_pdf.convertir_separado()
+
 
 def cli() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
