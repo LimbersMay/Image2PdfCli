@@ -1,3 +1,5 @@
 *.png
 *.cpython-310.pyc
 *.jpg
+*.pdf
+__pycache__/*
