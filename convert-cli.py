@@ -10,7 +10,7 @@ class CpException(Exception):
     pass
 
 
-def convert_image_to_pdf(src: Path, dest: Path, single=False, group=False, one=False, name='merged.pdf'):
+def convert_image_to_pdf(src: Path, dest: Path, single=False, group=False, one=False, name='merged'):
     
     print('source ->', src.absolute())
     print('Destination', dest.absolute())
@@ -92,7 +92,7 @@ def cli() -> argparse.Namespace:
 def main():
     args = cli()
     try:
-        convert_image_to_pdf(args.source, args.destination, args.single, args.group, args.one)
+        convert_image_to_pdf(args.source, args.destination, args.single, args.group, args.one, args.name)
         print("Convertion sucefully..!!")
     
     except CpException as e:
