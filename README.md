@@ -1,5 +1,7 @@
 # ConvertirImagenesPdf
-Convertir imágenes a PDF desde la consola con distintos parámetros
+Este programa convierte imágenes a PDF sin perder nada de calidad en el proceso, podemos relaizar distintas operaciones dependiendo de los parametros y banderas que proporcionemos. 
+
+Para poder usar el programa de la misma forma que en las capturas, es necesario que lo agregues al PATH de tu sistema. 
 
 Instalar las dependencias necesarias: 
 ```
