@@ -10,6 +10,7 @@ class PngToJpg:
         self.ruta_destino = ruta_destino
 
         self.extension = extension
+        self.existen_imagenes_png = False
 
     def realizar_conversion(self):
 
@@ -30,10 +31,17 @@ class PngToJpg:
             img.save(self.ruta_origen + convertir_jpg[contador])
             os.remove(self.ruta_origen + listado_pngs[contador])
 
+            self.existen_imagenes_png
+
     def realizar_conversion_unica(self):
         # Obtenemos el nombre final de la ruta (nombre del fichero) y le cambiamos la extensión
-        nombre_archivo = Path(self.ruta_origen).name
-        convertir_jpg = nombre_archivo[:-3] + self.extension
+        # Hacemos la conversión de png a jpg solo si existieron imágenes en png, en caso de que no, mantenemos su extensión original
+        if self.existen_imagenes_png:
+            nombre_archivo = Path(self.ruta_origen).name
+            convertir_jpg = nombre_archivo[:-3] + self.extension
+
+        if not self.existen_imagenes_png:
+            convertir_jpg = os.path.basename(self.ruta_origen)
 
         img = Image.open(self.ruta_origen)
 
@@ -75,7 +83,7 @@ class ImgToPdf:
     def conversion_unico(self):
         nombre_fichero = Path(self.ruta_origen).name
 
-        nombre_pdf = nombre_fichero[:-3] + "pdf" if nombre_fichero.endswith(".jpg") else nombre_fichero[:-5] + "pdf"
+        nombre_pdf = nombre_fichero[:-3] + "pdf" if nombre_fichero.endswith(".jpg") else nombre_fichero[:-4] + "pdf"
 
         # Eliminamos el nombre del fichero del Path
         self.ruta_origen = os.path.dirname(self.ruta_origen)
