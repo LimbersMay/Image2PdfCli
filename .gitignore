@@ -2,3 +2,4 @@
 *.jpg
 *.pdf
 __pycache__/*
+/modules
