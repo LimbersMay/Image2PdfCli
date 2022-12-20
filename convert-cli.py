@@ -19,8 +19,6 @@ def convert_image_to_pdf(src: Path, dest: Path, single=False, group=False, one=F
     convert_pdf = ImgToPdf(str(src.absolute()), str(dest.absolute()))
 
     # Convert png files to jpg files
-    
-
     if single and not group: 
         convert_png_to_jpg.realizar_conversion_unica()
         convert_pdf.conversion_unico()    
@@ -44,8 +42,8 @@ def cli() -> argparse.Namespace:
 
     parser.add_argument(
         'source',
-        type=Path,
-        help='Directory where the image file are'
+        type=Path.absolute(self),
+        help='Directory where the image or group of images are located'
     )
 
     parser.add_argument(
